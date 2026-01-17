@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amir Hartman — CV & Resume</title>
+  <meta name="description" content="Personal website & resume — Amir Hartman, Computer Science student at Ben-Gurion University, Python/Java/C++ Backend Developer, Software Engineering & Problem Solving." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Amir Hartman — CV & Resume" />
+  <meta property="og:description" content="Computer Science student at Ben-Gurion University. Python/Java/C++. Backend, System Design, Problem Solving." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg: #0f172a;
+      --slate: #1e293b;
+      --slate-light: #334155;
+      --text: #e2e8f0;
+      --text-bright: #f1f5f9;
+      --muted: #94a3b8;
+      --faint: #64748b;
+      --accent: #5eead4;
+      --accent-glow: rgba(94, 234, 212, 0.15);
+      --hover: rgba(148, 163, 184, 0.1);
+      --radius: 8px;
+      --max: 1400px;
+      --mono: "Inconsolata", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: "Rubik", -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      font-size: 16px;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body::before{
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-glow), transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    a{color:inherit; text-decoration:none; transition: color 200ms ease}
+    a:hover{color: var(--accent)}
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 24px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+    }
+    .topbar{
+      position: sticky;
+      top: 0;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      z-index: 20;
+      margin: -24px -24px 24px -24px;
+    }
+    .brand{display:flex; align-items: center; gap: 16px}
+    .brand .name{
+      font-weight:700;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      color: var(--text-bright);
+      white-space: nowrap;
+    }
+    .brand .role{
+      font-weight:500;
+      font-size: 0.875rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .brand .tag{
+      display: none;
+    }
+    .nav{
+      display:flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+    }
+    .chip{
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-weight: 600;
+      transition: all 200ms ease;
+      cursor: pointer;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+    .chip:hover{
+      color: var(--text-bright);
+      background: rgba(148, 163, 184, 0.1);
+    }
+    .chip.active{
+      color: var(--accent);
+      background: rgba(94, 234, 212, 0.1);
+    }
+
+    main{
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    section{
+      padding: 0;
+      display: none;
+      animation: fadeIn 300ms ease;
+    }
+    section.active{
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .secTitle{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 0;
+      padding: 16px 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+    .secTitle h2{
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-bright);
+    }
+
+    .list{display:grid; gap:12px; margin:0; padding:0; list-style:none}
+    .item{
+      padding: 24px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius);
+      transition: all 300ms ease;
+      position: relative;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .item::before{
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: var(--hover);
+      opacity: 0;
+      transition: opacity 300ms ease;
+      z-index: -1;
+    }
+    .item:hover::before{
+      opacity: 1;
+    }
+    .item:hover{
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.1);
+    }
+    .item .top{
+      display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px;
+      margin-bottom:8px;
+    }
+    .role{
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-bright);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .when{
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .org{
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .org:hover{
+      color: var(--accent);
+    }
+
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .tag{
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: rgba(94, 234, 212, 0.1);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 500;
+      transition: all 200ms ease;
+    }
+    .tag:hover{
+      background: rgba(94, 234, 212, 0.15);
+    }
+    footer{
+      margin-top: 60px;
+      padding: 24px 0;
+      color: var(--faint);
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+    }
+    .smalllink{
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .smalllink:hover{
+      color: var(--text-bright);
+    }
+    /* Social Links */
+    .social-links{
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .social-links a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      color: var(--muted);
+      transition: all 200ms ease;
+    }
+    .social-links a:hover{
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .social-links a svg{
+      width: 20px;
+      height: 20px;
+    }
+    @media (max-width: 768px){
+      .topbar{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .brand{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .nav{
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .social-links{
+        order: -1;
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="name">Amir Hartman</div>
+        <div class="role">Backend Developer</div>
+      </div>
+      
+      <nav class="nav" aria-label="Navigation">
+        <a class="chip active" data-tab="about" href="#about">About</a>
+        <a class="chip" data-tab="experience" href="#experience">Experience</a>
+        <a class="chip" data-tab="projects" href="#projects">Projects</a>
+        <a class="chip" data-tab="education" href="#education">Education</a>
+      </nav>
+
+      <div class="social-links">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/amir-hartman/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="mailto:amir.hartman.dev@gmail.com" aria-label="Email" title="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
+      </div>
+    </div>
+
+
+    <main>
+      <section id="about" class="active">
+        <div class="secTitle">
+          <h2>About</h2>
+        </div>
+        <p style="margin:0 0 16px 0; color:var(--text)">
+          Computer Science B.Sc. student (penultimate year) at Ben-Gurion University, majoring in Data Science.
+          Skilled in <span style="color:var(--accent)">Python, Java, and C++</span>, with strong problem-solving abilities and communication skills.
+        </p>
+        <p style="margin:0; color:var(--muted)">
+          Demonstrated experience in building practical software solutions, working effectively in teams, and learning new technologies independently.
+          Proven record of excellence across military, academic, and professional roles. Strong passion for software development and eager to contribute as an intern alongside studies.
+        </p>
+      </section>
+
+      <section id="experience">
+        <div class="secTitle">
+          <h2>Experience</h2>
+        </div>
+
+        <ul class="list">
+          <li class="item">
+            <div class="top">
+              <div class="when">2025 — Present</div>
+            </div>
+            <div class="role">Backend Developer · <a href="#" class="org">TechCyberPoint community</a></div>
+            <p style="color:var(--muted); margin:12px 0">Developing backend components in Python within a collaborative, real-world environment as part of a community-driven project meant to support computer technicians in diagnosing client's computers remotely. Gaining hands-on experience with teamwork, version control, and backend best practices.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Backend</span><span class="tag">REST APIs</span><span class="tag">Git</span>
+            </div>
+          </li>
+
+          <li class="item">
+            <div class="top">
+              <div class="when">2024 — 2025</div>
+            </div>
+            <div class="role">Programming Instructor · <span class="org">Cyber Education Center</span></div>
+            <p style="color:var(--muted); margin:12px 0">Instructing high school students in C programming as part of Israel's "Magshimim" cyber education program. Focused on technical skills, debugging, teamwork, and independent learning.</p>
+            <div class="tags">
+              <span class="tag">Teaching</span><span class="tag">C Programming</span><span class="tag">Mentorship</span>
+            </div>
+          </li>
+
+          <li class="item">
+            <div class="top">
+              <div class="when">2019 — 2021</div>
+            </div>
+            <div class="role">Physical Security Manager · <span class="org">Elbit Systems</span></div>
+            <p style="color:var(--muted); margin:12px 0">Promoted twice in one year (guard → systems operator → shift manager) which usually takes 2-3 years on average. Led security operations and managed a team of up to 6 guards per shift. Designed, implemented and maintained semi-automated scheduling tool, cutting weekly planning time by at least 50%.</p>
+            <div class="tags">
+              <span class="tag">Leadership</span><span class="tag">Process Automation</span><span class="tag">Team Management</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="projects">
+        <div class="secTitle">
+          <h2>Selected Projects</h2>
+        </div>
+
+        <ul class="list">
+          <li class="item">
+            <div class="role">Cross-Language Client-Server Messaging System</div>
+            <p style="color:var(--muted); margin:12px 0">
+              Java server and C++ client over TCP sockets using a custom protocol. Implemented Reactor and Thread-per-Client models with Factory/Observer patterns to support concurrency and improve runtime performance.
+            </p>
+            <div class="tags">
+              <span class="tag">Java</span><span class="tag">C++</span><span class="tag">TCP</span><span class="tag">Concurrency</span><span class="tag">Design Patterns</span>
+            </div>
+          </li>
+
+          <li class="item">
+            <div class="role">Semi-Automated Shift Scheduling Tool</div>
+            <p style="color:var(--muted); margin:12px 0">
+              Designed and implemented scheduling tool that cut weekly planning time by at least 50% and is in use today. Applied optimization algorithms and process automation to reduce operational overhead.
+            </p>
+            <div class="tags">
+              <span class="tag">Automation</span><span class="tag">Operations</span><span class="tag">Optimization</span>
+            </div>
+          </li>
+
+          <li class="item">
+            <div class="role">Remote Computer Support Backend System</div>
+            <p style="color:var(--muted); margin:12px 0">
+              Developing backend components and workflows for diagnosis and remote support of computers. Collaborating in a team environment while implementing best practices for production code.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Backend</span><span class="tag">REST APIs</span><span class="tag">Git</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="education">
+        <div class="secTitle">
+          <h2>Education</h2>
+        </div>
+
+        <ul class="list">
+          <li class="item">
+            <div class="top">
+              <div class="when">2023 — 2027</div>
+            </div>
+            <div class="role">Computer Science B.Sc. · <span class="org">Ben-Gurion University</span></div>
+            <p style="color:var(--muted); margin:12px 0">
+              Expected graduation: July 2027 | Major in Data Science | Current GPA: 88
+            </p>
+            <p style="color:var(--muted); margin:12px 0">
+              Key courses completed: Introduction to CS, Data structures, Algorithm planning (in progress), SPL, PPL.
+              Built Cross-Language Client-Server Messaging System with a Java server and C++ client over TCP sockets.
+            </p>
+          </li>
+
+          <li class="item">
+            <div class="top">
+              <div class="when">2021 — 2022</div>
+            </div>
+            <div class="role">Pre-Academic Program · <span class="org">Technion</span></div>
+            <p style="color:var(--muted); margin:12px 0">
+              Graduated with distinction (GPA: 90) | Psychometric score: 702 | Quantitative section: 139
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <footer>
+        <div style="color:var(--faint); font-size: 0.875rem">
+          Loosely inspired by <a href="https://brittanychiang.com/" target="_blank" rel="noopener" class="smalllink">Brittany Chiang</a>.
+          Built with vanilla HTML, CSS & JavaScript.
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('[data-tab]');
+    const sections = document.querySelectorAll('main section[id]');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const tabName = button.getAttribute('data-tab');
+        
+        // Remove active class from all buttons and sections
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        sections.forEach(section => section.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding section
+        button.classList.add('active');
+        const targetSection = document.getElementById(tabName);
+        if (targetSection) {
+          targetSection.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Mouse spotlight effect
+    document.addEventListener('mousemove', (e) => {
+      document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+  </script>
+</body>
+</html>
